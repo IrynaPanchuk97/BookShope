@@ -1,0 +1,70 @@
+﻿@page
+@model BookStory.Pages.BookPages.IndexModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th width="10%">
+                @Html.DisplayNameFor(model => model.Book[0].Title)
+            </th>
+            <th width="15%">
+                @Html.DisplayNameFor(model => model.Book[0].TrendPictureURL)
+            </th>
+            <th width="65%">
+                @Html.DisplayNameFor(model => model.Book[0].Description)
+            </th>
+            <th width="5%">
+                @Html.DisplayNameFor(model => model.Book[0].UrlDownload)
+            </th>
+            <th width="5%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Book)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+ 
+            <td>
+                <img src="@Url.Content(item.TrendPictureURL)" alt="Your Image" width="135" height="195" />
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.Date)
+
+            </td>
+
+            <td>
+                <a href="@item.UrlDownload)">
+                    <img src="https://iconizer.net/files/Bunch_of_Bluish_Icons/thumb/128/download.png" alt="Your Image" width="40" height="40" />
+                </a>
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+
+
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    <form asp-page-handler="put" asp-page="/BookPages/MyBook" asp-route-id="@item.Id" method="post">
+                        <input type="submit" value="Add to MyBokk" class="filter btn btn-common btn-xs" />
+                    </form>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

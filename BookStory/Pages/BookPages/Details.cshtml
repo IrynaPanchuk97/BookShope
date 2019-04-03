@@ -1,0 +1,49 @@
+﻿@page
+@model BookStory.Pages.BookPages.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.TrendPictureURL)
+        </dt>
+        <dd>
+            <img src="@Url.Content(Model.Book.TrendPictureURL)" alt="Your Image"width="155" height="215" />
+
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.UrlDownload)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.UrlDownload)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
